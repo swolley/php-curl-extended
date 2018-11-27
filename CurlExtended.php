@@ -1,5 +1,5 @@
 <?php
-class CurlExtended extends Curl {
+final class CurlExtended extends Curl {
     /** 
      * post alias with file deletion
      * @param   string  $url                destination url
