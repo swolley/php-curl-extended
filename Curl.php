@@ -1,4 +1,6 @@
 <?php
+namespace Curl;
+
 class Curl {
     /**
      * make get call

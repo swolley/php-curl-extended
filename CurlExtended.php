@@ -1,4 +1,6 @@
 <?php
+namespace Curl;
+
 final class CurlExtended extends Curl {
     /** 
      * post alias with file deletion
