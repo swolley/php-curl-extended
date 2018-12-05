@@ -8,5 +8,6 @@
             "email": "myentity@inwind.it"
         }
     ],
+    "minimum-stability": "dev",
     "require": {}
 }
