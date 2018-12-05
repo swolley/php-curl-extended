@@ -1,0 +1,12 @@
+{
+    "name": "swolley/php-curl-extended",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "swolley",
+            "email": "myentity@inwind.it"
+        }
+    ],
+    "require": {}
+}
