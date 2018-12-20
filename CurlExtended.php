@@ -1,5 +1,5 @@
 <?php
-namespace Curl;
+namespace Swolley\Curl;
 
 final class CurlExtended extends Curl {
     /** 
