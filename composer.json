@@ -11,8 +11,8 @@
     "minimum-stability": "dev",
     "require": {},
     "autoload": {
-        "psr-0": {
-            "\\Swolley\\Curl\\": "/"
+        "psr-4": {
+            "Swolley\\Curl\\": "/"
         }
     }
 }
