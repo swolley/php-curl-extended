@@ -35,7 +35,7 @@ class Curl {
         
         return $info['http_code'] === 200 ? $response : [
             'error' => $info['http_code'],
-            'message' => $response
+            'message' => $err
         ];
     }
 
@@ -77,7 +77,7 @@ class Curl {
         
         return $info['http_code'] === 201 ?: [
             'error' => $info['http_code'],
-            'message' => $response
+            'message' => $err
         ];
     }
 
