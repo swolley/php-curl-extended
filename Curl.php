@@ -10,7 +10,7 @@ class Curl {
      * @param	string	$token			authorization token
      * @return  mixed               	response data or array with error code and message if something went wrong
      */
-    public function get(string $url, array $queryParams, string $token = NULL) {
+    public function get(string $url, array $queryParams = [], string $token = NULL) {
         $curl = curl_init();
         $url_data = http_build_query($queryParams);
         $http_header = ['Content-Type: application/json'];
