@@ -6,16 +6,16 @@ final class CurlExtended extends Curl {
      * post alias with file deletion
      * @param   string  $url                destination url
      * @param   array   $fields             body object
-     * @param   array   $pathNames          array of files' path
+     * @param   array   $filepaths          array of files' path
      * @param	string	$token				authorization token
      * @param   bool    $deleteAfterPost    deletes local files if post ended correctly
      * @return  mixed   $response           post response
      * @see             $this->post
      * */
-	public function postMulti(string $url, array $fields, array $pathNames, string $token = NULL, bool $deleteAfterPost = FALSE){
-		$response = $this->post($url, $fields, $pathNames, $token);
+	public function postMulti(string $url, array $fields, array $filepaths, string $token = NULL, bool $deleteAfterPost = FALSE){
+		$response = $this->post($url, $fields, $filepaths, $token);
 		if($response === TRUE && $deleteAfterPost) {
-			$this->deleteLocalFiles($pathNames);
+			$this->deleteLocalFiles($filepaths);
 		}
 		
 		return $response;
@@ -24,16 +24,16 @@ final class CurlExtended extends Curl {
     /** 
      * post alias with no fields and file deletion
      * @param   string  $url                destination url
-     * @param   array   $pathNames          array of files' path
+     * @param   array   $filepaths          array of files' path
      * @param	string	$token				authorization token
      * @param   bool    $deleteAfterPost    deletes local files if post ended correctly
      * @return  mixed   $response           post response
      * @see             $this->post
      * */
-	public function postFiles(string $url, array $pathNames, string $token = NULL, bool $deleteAfterPost = FALSE){
-		$response = $this->post($url, [], $pathNames, $token);
+	public function postFiles(string $url, array $filepaths, string $token = NULL, bool $deleteAfterPost = FALSE){
+		$response = $this->post($url, [], $filepaths, $token);
 		if($response === TRUE && $deleteAfterPost) {
-			$this->deleteLocalFiles($pathNames);
+			$this->deleteLocalFiles($filepaths);
 		}
 		
 		return $response;
