@@ -67,7 +67,7 @@ class Curl
 		curl_close($curl);
 		
 		$parsed_response = @json_decode($response, true);
-		if(last_json_error() === JSON_ERROR_NONE) {
+		if(json_last_error() === JSON_ERROR_NONE) {
     		$response = $parsed_response;
 		}
 
@@ -110,7 +110,7 @@ class Curl
 		curl_close($curl);
 		
 		$parsed_response = @json_decode($response, true);
-		if(last_json_error() === JSON_ERROR_NONE) {
+		if(json_last_error() === JSON_ERROR_NONE) {
     		$response = $parsed_response;
 		}
 
