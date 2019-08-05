@@ -65,6 +65,11 @@ class Curl
 
 		$err = curl_error($curl);
 		curl_close($curl);
+		
+		$parsed_response = @json_decode($response, true);
+		if(last_json_error() === JSON_ERROR_NONE) {
+    		$response = $parsed_response;
+		}
 
 		return $info['http_code'] === 200 || ($method === 'POST' && $info['http_code'] === 201) ? $response : [
 			'error' => $info['http_code'],
@@ -103,6 +108,11 @@ class Curl
 
 		$err = curl_error($curl);
 		curl_close($curl);
+		
+		$parsed_response = @json_decode($response, true);
+		if(last_json_error() === JSON_ERROR_NONE) {
+    		$response = $parsed_response;
+		}
 
 		return $info['http_code'] === 200 ? $response : [
 			'error' => $info['http_code'],
