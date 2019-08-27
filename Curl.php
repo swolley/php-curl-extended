@@ -6,12 +6,12 @@ class Curl
 {
 	public function get(string $url, array $queryParams = [], string $token = NULL)
 	{
-		$this->withoutBody('GET', $url, $queryParams, $token);
+		return $this->withoutBody('GET', $url, $queryParams, $token);
 	}
 
 	public function delete(string $url, array $queryParams = [], string $token = NULL)
 	{ 
-		$this->withoutBody('DELETE', $url, $queryParams, $token);
+		return $this->withoutBody('DELETE', $url, $queryParams, $token);
 	}
 
 	public function post(string $url, array $fields, array $pathNames, string $token = NULL)
