@@ -4,29 +4,29 @@ namespace Swolley\Curl;
 
 class Curl
 {
-	public function get(string $url, array $queryParams = [], string $token = NULL)
+	public function get(string $url, array $queryParams = [], string $token = NULL, $timeout = 30)
 	{
-		return $this->withoutBody('GET', $url, $queryParams, $token);
+		return $this->withoutBody('GET', $url, $queryParams, $token, $timeout);
 	}
 
-	public function delete(string $url, array $queryParams = [], string $token = NULL)
+	public function delete(string $url, array $queryParams = [], string $token = NULL, $timeout = 30)
 	{ 
-		return $this->withoutBody('DELETE', $url, $queryParams, $token);
+		return $this->withoutBody('DELETE', $url, $queryParams, $token, $timeout);
 	}
 
-	public function post(string $url, array $fields, array $pathNames, string $token = NULL)
+	public function post(string $url, array $fields, array $pathNames, string $token = NULL, $timeout = 30)
 	{
-		return $this->withBody('POST', $url, $fields, $pathNames, $token);
+		return $this->withBody('POST', $url, $fields, $pathNames, $token, $timeout);
 	}
 
-	public function put(string $url, array $fields, array $pathNames, string $token = NULL)
+	public function put(string $url, array $fields, array $pathNames, string $token = NULL, $timeout = 30)
 	{ 
-		return $this->withBody('PUT', $url, $fields, $pathNames, $token);
+		return $this->withBody('PUT', $url, $fields, $pathNames, $token, $timeout);
 	}
 
-	public function patch(string $url, array $fields, array $pathNames, string $token = NULL)
+	public function patch(string $url, array $fields, array $pathNames, string $token = NULL, $timeout = 30)
 	{ 
-		return $this->withBody('PATCH', $url, $fields, $pathNames, $token);
+		return $this->withBody('PATCH', $url, $fields, $pathNames, $token, $timeout);
 	}
 
 	/**
@@ -37,7 +37,7 @@ class Curl
 	 * @param	string	$token		authorization token
 	 * @return  mixed               response data or array with error code and message if something went wrong
 	 */
-	private function withBody(string $method, string $url, array $fields, array $pathNames, string $token = NULL)
+	private function withBody(string $method, string $url, array $fields, array $pathNames, string $token = NULL, $timeout = 30)
 	{ 
 		$curl = curl_init();
 		$boundary = uniqid();
@@ -53,7 +53,7 @@ class Curl
 			CURLOPT_URL => $url,
 			CURLOPT_RETURNTRANSFER => 1,
 			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 30,
+			CURLOPT_TIMEOUT => $timeout,
 			//CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => strtoupper($method),
 			CURLOPT_POST => 1,
@@ -85,7 +85,7 @@ class Curl
 	 * @param	string	$token			authorization token
 	 * @return  mixed               	response data or array with error code and message if something went wrong
 	 */
-	private function withoutBody(string $method, string $url, array $queryParams = [], string $token = NULL)
+	private function withoutBody(string $method, string $url, array $queryParams = [], string $token = NULL, $timeout = 30)
 	{
 		$curl = curl_init();
 		$url_data = http_build_query($queryParams);
@@ -98,7 +98,7 @@ class Curl
 			CURLOPT_URL => $url . "?" . $url_data,
 			CURLOPT_RETURNTRANSFER => 1,
 			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 30,
+			CURLOPT_TIMEOUT => $timeout,
 			//CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => strtoupper($method),
 			CURLOPT_HTTPHEADER => $http_header
